@@ -51,6 +51,28 @@ class BinaryTree:
             self._in_order_traversal_recursive(current_node.left, result)
             result.append(current_node.value)
             self._in_order_traversal_recursive(current_node.right, result)
+        
+    def prefix_iteration(self):
+        result = []
+        self._in_order_prefix(self.root, result)
+        return result
+
+    def _in_order_prefix(self, current_node, result):
+        if current_node:
+            result.append(current_node.value)
+            self._in_order_prefix(current_node.left, result)
+            self._in_order_prefix(current_node.right, result)
+    
+    def posfix_iteration(self):
+        result = []
+        self._in_order_posfix(self.root, result)
+        return result
+
+    def _in_order_posfix(self, current_node, result):
+        if current_node:
+            self._in_order_posfix(current_node.left, result)
+            self._in_order_posfix(current_node.right, result)
+            result.append(current_node.value)
 
 
 # Exemple d'utilisation
@@ -63,5 +85,7 @@ tree.insert(12)
 tree.insert(17)
 
 print("In-order traversal:", tree.in_order_traversal())
+print("Prefix-order :", tree.prefix_iteration())
+print("Posfix-order :", tree.posfix_iteration())
 print("Search for 7:", tree.search(7))
 print("Search for 8:", tree.search(8))
